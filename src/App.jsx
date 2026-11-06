@@ -5,7 +5,6 @@ import ProjectDetail from './pages/ProjectDetail';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import './App.css';
-import { HashRouter } from 'react-router-dom';
 
 
 function App() {

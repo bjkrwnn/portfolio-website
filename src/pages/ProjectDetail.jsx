@@ -4,7 +4,7 @@ import { projects } from '../data/projects';
 import Navbar from '../components/Navbar';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { LanguageContext } from '../contexts/LanguageContext';
-import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaVideo, FaPalette } from 'react-icons/fa';
+import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaVideo, FaPalette, FaCode, FaFolder, FaImages, FaBookOpen, FaClipboardList, FaArrowRight, FaFire, FaExclamationTriangle, FaCheckCircle, FaCheck, FaTools, FaInfoCircle, FaExpand, FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const ProjectDetail = () => {
   const { type, id } = useParams();
@@ -12,24 +12,41 @@ const ProjectDetail = () => {
   const { language, translations } = useContext(LanguageContext);
   const [project, setProject] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
 
   useEffect(() => {
     const foundProject = projects[type]?.find(proj => proj.id === parseInt(id));
     setProject(foundProject);
     setCurrentImageIndex(0);
+    setIsViewerOpen(false);
   }, [type, id]);
 
-  // Handle ESC key
+  // Handle ESC key (and arrow keys while the image viewer is open)
   useEffect(() => {
-    const handleEsc = (e) => {
+    const imageCount = project ? (project.images || [project.mainImage]).length : 0;
+
+    const handleKeys = (e) => {
       if (e.key === 'Escape') {
-        setCurrentImageIndex(0);
+        if (isViewerOpen) setIsViewerOpen(false);
+        else setCurrentImageIndex(0);
+      } else if (isViewerOpen && imageCount > 1 && e.key === 'ArrowRight') {
+        setCurrentImageIndex((i) => (i + 1) % imageCount);
+      } else if (isViewerOpen && imageCount > 1 && e.key === 'ArrowLeft') {
+        setCurrentImageIndex((i) => (i - 1 + imageCount) % imageCount);
       }
     };
-    
-    document.addEventListener('keydown', handleEsc);
-    return () => document.removeEventListener('keydown', handleEsc);
-  }, []);
+
+    document.addEventListener('keydown', handleKeys);
+    return () => document.removeEventListener('keydown', handleKeys);
+  }, [isViewerOpen, project]);
+
+  // Keep the page from scrolling behind the open viewer
+  useEffect(() => {
+    if (!isViewerOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = previousOverflow; };
+  }, [isViewerOpen]);
 
   if (!project) {
     return (
@@ -38,7 +55,7 @@ const ProjectDetail = () => {
           <h1 className="text-3xl mb-4">
             {language === 'en' ? 'Project not found' : 'Projekt nem található'}
           </h1>
-          <Link to="/" className={`px-6 py-3 rounded-lg font-bold transition-all ${theme === 'dark' ? 'bg-red-600 hover:bg-red-700' : 'bg-orange-500 hover:bg-orange-600'} text-white`}>
+          <Link to="/" state={{ scrollTo: 'projects' }} className={`px-6 py-3 rounded-lg font-bold transition-all ${theme === 'dark' ? 'bg-red-600 hover:bg-red-700' : 'bg-orange-500 hover:bg-orange-600'} text-white`}>
             {translations[language].backToHome}
           </Link>
         </div>
@@ -48,10 +65,10 @@ const ProjectDetail = () => {
 
   const getCategoryIcon = () => {
     switch(type) {
-      case 'frontend': return '🚀';
-      case 'video': return '🎬';
-      case 'design': return '🎨';
-      default: return '📁';
+      case 'frontend': return <FaCode />;
+      case 'video': return <FaVideo />;
+      case 'design': return <FaPalette />;
+      default: return <FaFolder />;
     }
   };
 
@@ -79,6 +96,9 @@ const ProjectDetail = () => {
     setCurrentImageIndex(index);
   };
 
+  const showPrevImage = () => setCurrentImageIndex((i) => (i - 1 + images.length) % images.length);
+  const showNextImage = () => setCurrentImageIndex((i) => (i + 1) % images.length);
+
   return (
     <div className={`min-h-screen transition-all duration-500 ${theme === 'dark' ? 'bg-gradient-to-b from-zinc-950 to-zinc-900 text-gray-200' : 'bg-gradient-to-b from-white to-gray-50 text-gray-800'}`}>
       <Navbar />
@@ -86,7 +106,7 @@ const ProjectDetail = () => {
       <div className="container mx-auto px-4 py-8 pt-24">
         {/* Back Button */}
         <Link 
-          to="/" 
+          to="/" state={{ scrollTo: 'projects' }} 
           className={`inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-lg font-medium transition-all hover:scale-105 ${theme === 'dark' ? 'bg-zinc-800 hover:bg-zinc-700 text-red-400 hover:text-red-300' : 'bg-gray-100 hover:bg-gray-200 text-orange-600 hover:text-orange-500'}`}
         >
           <FaArrowLeft /> {translations[language].backToHome}
@@ -100,7 +120,7 @@ const ProjectDetail = () => {
                 {getCategoryIcon()}
               </div>
               <span className={`px-5 py-2 rounded-full text-sm font-bold ${getCategoryBgColor()} ${getCategoryColor()} border ${theme === 'dark' ? 'border-zinc-700' : 'border-gray-300'}`}>
-                {type === 'frontend' ? translations[language].frontend : 
+                {type === 'frontend' ? translations[language].frontend :
                  type === 'video' ? translations[language].videoEditing : 
                  translations[language].design}
               </span>
@@ -117,18 +137,32 @@ const ProjectDetail = () => {
           {/* Main Gallery Section */}
           <div className={`rounded-2xl overflow-hidden border-2 mb-12 ${theme === 'dark' ? 'border-zinc-800 bg-zinc-900' : 'border-gray-200 bg-white'} shadow-2xl`}>
             {/* Main Hero Image with Overlay */}
-            <div className="relative h-80 md:h-[500px] overflow-hidden">
-              <img 
-                src={images[currentImageIndex]} 
-                alt={project.title[language]} 
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-              />
-              <div className={`absolute inset-0 bg-gradient-to-t ${theme === 'dark' ? 'from-black/90 via-black/50 to-transparent' : 'from-white/90 via-white/50 to-transparent'}`}></div>
+            <div className="group relative h-80 md:h-[500px] overflow-hidden">
+              <button
+                type="button"
+                onClick={() => setIsViewerOpen(true)}
+                className="block w-full h-full cursor-zoom-in"
+                aria-label={language === 'en' ? 'Open image in full view' : 'Kép megnyitása teljes nézetben'}
+              >
+                <img
+                  src={images[currentImageIndex]}
+                  alt={project.title[language]}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </button>
+
+              {/* Full View Hint */}
+              <div className="pointer-events-none absolute top-6 left-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold backdrop-blur-sm ${theme === 'dark' ? 'bg-black/60 text-red-400 border border-red-500/30' : 'bg-white/80 text-orange-600 border border-orange-500/30'}`}>
+                  <FaExpand /> {language === 'en' ? 'Click to view' : 'Kattints a megtekintéshez'}
+                </span>
+              </div>
+              <div className={`pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t transition-opacity duration-500 group-hover:opacity-0 ${theme === 'dark' ? 'from-black/50 to-transparent' : 'from-white/50 to-transparent'}`}></div>
               
               {/* Image Counter */}
               <div className="absolute top-6 right-6">
                 <span className={`px-4 py-2 rounded-full text-sm font-bold backdrop-blur-sm ${theme === 'dark' ? 'bg-black/60 text-red-400 border border-red-500/30' : 'bg-white/80 text-orange-600 border border-orange-500/30'}`}>
-                  📸 {currentImageIndex + 1} / {images.length}
+                  <FaImages className="inline -mt-0.5 mr-1" /> {currentImageIndex + 1} / {images.length}
                 </span>
               </div>
             </div>
@@ -137,7 +171,7 @@ const ProjectDetail = () => {
             {images.length > 1 && (
               <div className={`p-6 ${theme === 'dark' ? 'bg-zinc-950' : 'bg-gray-50'}`}>
                 <h3 className={`text-lg font-bold mb-4 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
-                  👆 Click thumbnails to view images:
+                  {language === 'en' ? 'Click thumbnails to view images:' : 'Kattints a bélyegképekre a váltáshoz:'}
                 </h3>
                 <div className="flex gap-4 overflow-x-auto pb-4">
                   {images.map((img, index) => (
@@ -164,7 +198,7 @@ const ProjectDetail = () => {
               {/* Description Section */}
               <div className={`p-8 rounded-2xl ${theme === 'dark' ? 'bg-zinc-900 border border-zinc-800' : 'bg-white border border-gray-200'} shadow-lg`}>
                 <h2 className={`text-3xl font-bold mb-6 flex items-center gap-3 ${theme === 'dark' ? 'text-red-400' : 'text-orange-600'}`}>
-                  <span className="text-3xl">📖</span>
+                  <FaBookOpen className="text-3xl" />
                   {translations[language].description}
                 </h2>
                 <p className={`text-xl leading-relaxed ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -176,13 +210,13 @@ const ProjectDetail = () => {
               {project.features && (
                 <div className={`p-8 rounded-2xl ${theme === 'dark' ? 'bg-zinc-900 border border-zinc-800' : 'bg-white border border-gray-200'} shadow-lg`}>
                   <h2 className={`text-3xl font-bold mb-6 flex items-center gap-3 ${theme === 'dark' ? 'text-red-400' : 'text-orange-600'}`}>
-                    <span className="text-3xl">✨</span>
+                    <FaClipboardList className="text-3xl" />
                     {translations[language].features}
                   </h2>
                   <ul className={`space-y-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
                     {project.features[language].map((feature, index) => (
                       <li key={index} className="flex items-start gap-4 p-4 rounded-lg hover:scale-[1.02] transition-all duration-300">
-                        <span className={`text-2xl mt-1 ${theme === 'dark' ? 'text-red-500' : 'text-orange-500'}`}>⚡</span>
+                        <FaArrowRight className={`flex-shrink-0 text-lg mt-1.5 ${theme === 'dark' ? 'text-red-500' : 'text-orange-500'}`} />
                         <span className="text-xl">{feature}</span>
                       </li>
                     ))}
@@ -200,13 +234,13 @@ const ProjectDetail = () => {
                     {project.challenges && (
                       <div className={`p-6 rounded-xl ${theme === 'dark' ? 'bg-red-900/10 border border-red-800/30' : 'bg-red-50 border border-red-200'}`}>
                         <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${theme === 'dark' ? 'text-red-300' : 'text-red-600'}`}>
-                          <span className="text-2xl">🔥</span>
+                          <FaFire className="text-2xl" />
                           {translations[language].challenges}
                         </h3>
                         <ul className={`space-y-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
                           {project.challenges[language].map((challenge, index) => (
                             <li key={index} className="flex items-start gap-3">
-                              <span className="text-red-500 mt-2">⚠️</span>
+                              <FaExclamationTriangle className="flex-shrink-0 text-red-500 mt-1.5" />
                               <span className="text-lg">{challenge}</span>
                             </li>
                           ))}
@@ -216,13 +250,13 @@ const ProjectDetail = () => {
                     {project.solutions && (
                       <div className={`p-6 rounded-xl ${theme === 'dark' ? 'bg-green-900/10 border border-green-800/30' : 'bg-green-50 border border-green-200'}`}>
                         <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${theme === 'dark' ? 'text-green-300' : 'text-green-600'}`}>
-                          <span className="text-2xl">✅</span>
+                          <FaCheckCircle className="text-2xl" />
                           {translations[language].solutions}
                         </h3>
                         <ul className={`space-y-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
                           {project.solutions[language].map((solution, index) => (
                             <li key={index} className="flex items-start gap-3">
-                              <span className="text-green-500 mt-2">✓</span>
+                              <FaCheck className="flex-shrink-0 text-green-500 mt-1.5" />
                               <span className="text-lg">{solution}</span>
                             </li>
                           ))}
@@ -239,7 +273,7 @@ const ProjectDetail = () => {
               {/* Technologies Card */}
               <div className={`p-8 rounded-2xl ${theme === 'dark' ? 'bg-zinc-900 border border-zinc-800' : 'bg-white border border-gray-200'} shadow-lg`}>
                 <h2 className={`text-3xl font-bold mb-6 flex items-center gap-3 ${theme === 'dark' ? 'text-red-400' : 'text-orange-600'}`}>
-                  <span className="text-3xl">🛠️</span>
+                  <FaTools className="text-3xl" />
                   {translations[language].technologies}
                 </h2>
                 <div className="flex flex-wrap gap-4">
@@ -257,24 +291,24 @@ const ProjectDetail = () => {
               {/* Project Info Card */}
               <div className={`p-8 rounded-2xl ${theme === 'dark' ? 'bg-zinc-900 border border-zinc-800' : 'bg-white border border-gray-200'} shadow-lg`}>
                 <h2 className={`text-3xl font-bold mb-6 flex items-center gap-3 ${theme === 'dark' ? 'text-red-400' : 'text-orange-600'}`}>
-                  <span className="text-3xl">ℹ️</span>
-                  Project Info
+                  <FaInfoCircle className="text-3xl" />
+                  {language === 'en' ? 'Project Info' : 'Projekt Infó'}
                 </h2>
                 <div className={`space-y-6 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
                   <div className="flex justify-between items-center p-4 rounded-lg bg-zinc-800/50 dark:bg-gray-100">
-                    <span className="font-bold text-lg">Category:</span>
+                    <span className="font-bold text-lg">{language === 'en' ? 'Category:' : 'Kategória:'}</span>
                     <span className={`font-bold text-xl ${getCategoryColor()}`}>
-                      {type === 'frontend' ? 'Frontend' : type === 'video' ? 'Video' : 'Design'}
+                      {type === 'frontend' ? 'Frontend' : type === 'video' ? (language === 'en' ? 'Video' : 'Videó') : 'Design'}
                     </span>
                   </div>
                   <div className="flex justify-between items-center p-4 rounded-lg bg-zinc-800/50 dark:bg-gray-100">
-                    <span className="font-bold text-lg">Images:</span>
+                    <span className="font-bold text-lg">{language === 'en' ? 'Images:' : 'Képek:'}</span>
                     <span className="font-bold text-xl">{images.length}</span>
                   </div>
                   <div className="flex justify-between items-center p-4 rounded-lg bg-zinc-800/50 dark:bg-gray-100">
-                    <span className="font-bold text-lg">Status:</span>
+                    <span className="font-bold text-lg">{language === 'en' ? 'Status:' : 'Állapot:'}</span>
                     <span className={`px-4 py-2 rounded-lg text-sm font-bold ${theme === 'dark' ? 'bg-green-900/40 text-green-400' : 'bg-green-100 text-green-700'}`}>
-                      ✅ Completed
+                      <FaCheckCircle className="inline -mt-0.5 mr-1" /> {language === 'en' ? 'Completed' : 'Kész'}
                     </span>
                   </div>
                 </div>
@@ -286,7 +320,7 @@ const ProjectDetail = () => {
           <div className="mt-16 pt-10 border-t border-zinc-800 dark:border-gray-300">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-8">
               <Link 
-                to="/" 
+                to="/" state={{ scrollTo: 'projects' }} 
                 className={`flex items-center gap-3 px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:scale-105 ${theme === 'dark' ? 'bg-zinc-800 hover:bg-zinc-700 text-gray-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]' : 'bg-gray-100 hover:bg-gray-200 text-gray-700 hover:shadow-[0_0_20px_rgba(0,0,0,0.1)]'}`}
               >
                 <FaArrowLeft className="w-5 h-5" />
@@ -302,16 +336,67 @@ const ProjectDetail = () => {
                 </p>
               </div>
               
-              <a 
-                href="#contact" 
+              <Link
+                to="/" state={{ scrollTo: 'contact' }}
                 className={`px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:scale-105 ${theme === 'dark' ? 'bg-gradient-to-r from-red-600 to-red-700 hover:shadow-[0_0_30px_rgba(239,68,68,0.6)] text-white' : 'bg-gradient-to-r from-orange-500 to-orange-600 hover:shadow-[0_0_30px_rgba(249,115,22,0.5)] text-white'}`}
               >
                 {language === 'en' ? 'Contact Me' : 'Kapcsolat'}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Full Screen Image Viewer */}
+      {isViewerOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm animate-fadeIn"
+          onClick={() => setIsViewerOpen(false)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <img
+            src={images[currentImageIndex]}
+            alt={`${project.title[language]} - ${currentImageIndex + 1}`}
+            onClick={(e) => e.stopPropagation()}
+            className="max-w-[92vw] max-h-[85vh] object-contain rounded-lg shadow-2xl animate-scaleIn"
+          />
+
+          <button
+            type="button"
+            onClick={() => setIsViewerOpen(false)}
+            className="absolute top-5 right-5 p-3 rounded-full bg-white/10 text-white text-xl hover:bg-white/20 transition-all"
+            aria-label={language === 'en' ? 'Close' : 'Bezárás'}
+          >
+            <FaTimes />
+          </button>
+
+          {images.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); showPrevImage(); }}
+                className={`absolute left-3 md:left-6 p-4 rounded-full bg-white/10 text-white text-xl transition-all ${theme === 'dark' ? 'hover:bg-red-500/80' : 'hover:bg-orange-500/80'}`}
+                aria-label={language === 'en' ? 'Previous image' : 'Előző kép'}
+              >
+                <FaChevronLeft />
+              </button>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); showNextImage(); }}
+                className={`absolute right-3 md:right-6 p-4 rounded-full bg-white/10 text-white text-xl transition-all ${theme === 'dark' ? 'hover:bg-red-500/80' : 'hover:bg-orange-500/80'}`}
+                aria-label={language === 'en' ? 'Next image' : 'Következő kép'}
+              >
+                <FaChevronRight />
+              </button>
+            </>
+          )}
+
+          <span className="absolute bottom-5 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-white/10 text-white text-sm font-bold">
+            {currentImageIndex + 1} / {images.length}
+          </span>
+        </div>
+      )}
     </div>
   );
 };

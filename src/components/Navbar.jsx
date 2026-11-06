@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { FaSun, FaMoon, FaGlobe, FaBars, FaTimes } from 'react-icons/fa';
@@ -8,6 +8,7 @@ const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { language, toggleLanguage, translations } = useContext(LanguageContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const navItems = [
     { id: 'home', label: translations[language].home },
@@ -20,10 +21,13 @@ const Navbar = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ 
+      element.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
+    } else {
+      // Not on the home page (e.g. a project page): go home, then jump to the section
+      navigate('/', { state: { scrollTo: id } });
     }
     setIsMenuOpen(false);
   };

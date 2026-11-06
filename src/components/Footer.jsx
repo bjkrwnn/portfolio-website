@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { LanguageContext } from '../contexts/LanguageContext';
-import { FaHeart, FaGithub, FaLinkedin, FaDiscord, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaDiscord, FaEnvelope } from 'react-icons/fa';
 
 const Footer = () => {
   const { theme } = useContext(ThemeContext);
   const { language, translations } = useContext(LanguageContext);
 
   const socialLinks = [
-    { icon: <FaGithub />, url: 'https://github.com', label: 'GitHub' },
-    { icon: <FaLinkedin />, url: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: <FaDiscord />, url: 'https://discord.com', label: 'Discord' },
-    { icon: <FaEnvelope />, url: 'https://gmail.com', label: 'Email' },
+    { icon: <FaGithub />, url: 'https://github.com/bjkrwnn', label: 'GitHub' },
+    // Discord has no public profile link, so this jumps to the contact card with the username
+    { icon: <FaDiscord />, url: '#contact', label: 'Discord' },
+    { icon: <FaEnvelope />, url: 'mailto:rowivok@gmail.com', label: 'Email' },
   ];
 
   return (
@@ -22,7 +22,7 @@ const Footer = () => {
           <div className={`mb-4 md:mb-0 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
             <p>{translations[language].copyright}</p>
             <p className="text-sm mt-1 flex items-center gap-1">
-              Made with <FaHeart className="text-red-500 animate-pulse" /> by Rowen
+              Made by Rowenna B.
             </p>
           </div>
 
@@ -32,8 +32,8 @@ const Footer = () => {
               <a
                 key={index}
                 href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={social.url.startsWith('http') ? '_blank' : undefined}
+                rel={social.url.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className={`p-2 rounded-full transition-all duration-300 hover:scale-110 ${theme === 'dark' ? 'text-gray-400 hover:text-red-400 hover:bg-zinc-800' : 'text-gray-600 hover:text-red-600 hover:bg-gray-200'}`}
                 aria-label={social.label}
               >

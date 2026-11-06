@@ -44,20 +44,20 @@ const About = () => {
 
   const quickFacts = language === 'en' 
     ? [
-        { icon: '⚡', text: '5+ years of experience' },
-        { icon: '🎯', text: '50+ projects completed' },
-        { icon: '🌍', text: 'Worked with clients worldwide' },
-        { icon: '🚀', text: 'Always learning new technologies' },
-        { icon: '💡', text: 'Creative problem solver' },
-        { icon: '🤝', text: 'Strong collaboration skills' }
+        { text: '3+ years of experience' },
+        { text: '10+ projects completed' },
+        { text: 'Worked with clients worldwide' },
+        { text: 'Always learning new technologies' },
+        { text: 'Creative problem solver' },
+        { text: 'Strong collaboration skills' }
       ]
     : [
-        { icon: '⚡', text: '5+ év tapasztalat' },
-        { icon: '🎯', text: '50+ befejezett projekt' },
-        { icon: '🌍', text: 'Világszerte dolgoztam ügyfelekkel' },
-        { icon: '🚀', text: 'Mindig tanulok új technológiákat' },
-        { icon: '💡', text: 'Kreatív problémamegoldó' },
-        { icon: '🤝', text: 'Erős együttműködési készségek' }
+        { text: '3+ év tapasztalat' },
+        { text: '10+ befejezett projekt' },
+        { text: 'Világszerte dolgoztam ügyfelekkel' },
+        { text: 'Mindig tanulok új technológiákat' },
+        { text: 'Kreatív problémamegoldó' },
+        { text: 'Erős együttműködési készségek' }
       ];
 
   return (
@@ -77,6 +77,9 @@ const About = () => {
               </p>
               <p className={`text-lg ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
                 {translations[language].aboutText2}
+              </p>
+              <p className={`text-lg ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                {translations[language].aboutText3}
               </p>
             </div>
             

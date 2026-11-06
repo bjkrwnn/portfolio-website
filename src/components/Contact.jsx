@@ -1,7 +1,7 @@
 ﻿import React, { useContext } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { LanguageContext } from '../contexts/LanguageContext';
-import { FaDiscord, FaEnvelope, FaGithub, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { FaDiscord, FaEnvelope, FaGithub, FaYoutube } from 'react-icons/fa';
 
 const Contact = () => {
   const { theme } = useContext(ThemeContext);
@@ -25,18 +25,10 @@ const Contact = () => {
     {
       icon: <FaGithub className="w-6 h-6" />,
       title: 'GitHub',
-      value: 'github.com/Yumiiko',
+      value: 'github.com/bjkrwnn',
       color: 'gray',
       action: 'link',
-      url: 'https://github.com/Yumiiko'
-    },
-    {
-      icon: <FaLinkedin className="w-6 h-6" />,
-      title: 'LinkedIn',
-      value: 'linkedin.com',
-      color: 'blue',
-      action: 'link',
-      url: 'https://linkedin.com'
+      url: 'https://github.com/bjkrwnn'
     }
   ];
 
@@ -58,7 +50,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {contactMethods.map((method, index) => (
               <div 
                 key={index}

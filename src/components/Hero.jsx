@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { LanguageContext } from '../contexts/LanguageContext';
-import { FaArrowDown, FaGithub, FaLinkedin, FaDiscord } from 'react-icons/fa';
+import { FaArrowDown, FaGithub, FaDiscord } from 'react-icons/fa';
 
 const Hero = () => {
   const { theme } = useContext(ThemeContext);
@@ -73,15 +73,15 @@ const Hero = () => {
         {/* Social Links */}
         <div className="flex justify-center gap-6 mb-12">
           {[
-            { icon: <FaGithub />, label: 'GitHub', url: 'https://github.com' },
-            { icon: <FaLinkedin />, label: 'LinkedIn', url: 'https://linkedin.com' },
-            { icon: <FaDiscord />, label: 'Discord', url: 'https://discord.com' }
+            { icon: <FaGithub />, label: 'GitHub', url: 'https://github.com/bjkrwnn' },
+            // Discord has no public profile link, so this jumps to the contact card with the username
+            { icon: <FaDiscord />, label: 'Discord', url: '#contact' }
           ].map((social, index) => (
             <a
               key={index}
               href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={social.url.startsWith('http') ? '_blank' : undefined}
+              rel={social.url.startsWith('http') ? 'noopener noreferrer' : undefined}
               className={`p-3 rounded-full transition-all duration-300 hover:scale-110 ${theme === 'dark' ? 'bg-zinc-800 text-gray-300 hover:text-red-400 hover:bg-zinc-700 hover:shadow-[0_0_20px_rgba(239,68,68,0.3)]' : 'bg-gray-100 text-gray-700 hover:text-orange-600 hover:bg-gray-200 hover:shadow-[0_0_20px_rgba(249,115,22,0.2)]'}`}
               aria-label={social.label}
             >

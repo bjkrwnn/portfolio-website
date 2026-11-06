@@ -2,7 +2,16 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { LanguageContext } from '../contexts/LanguageContext';
+import { projects as projectData } from '../data/projects';
 import { FaArrowRight, FaVideo, FaPalette, FaCode } from 'react-icons/fa';
+
+// Repeat the projects until one loop is wider than a large screen
+const MIN_LOOP_ITEMS = 8;
+const getLoopItems = (projects) => {
+  const items = [];
+  while (items.length < MIN_LOOP_ITEMS) items.push(...projects);
+  return items;
+};
 
 const Projects = () => {
   const { theme } = useContext(ThemeContext);
@@ -113,32 +122,54 @@ const Projects = () => {
               <h3 className="text-2xl font-bold">{category.title}</h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {category.projects.map((project, projIndex) => (
-                <div 
-                  key={projIndex}
-                  className={`group rounded-xl border-2 p-6 transition-all duration-500 hover:scale-[1.02] ${theme === 'dark' ? 'border-zinc-800 bg-zinc-900 hover:border-red-500 hover:shadow-[0_0_30px_rgba(239,68,68,0.5)]' : 'border-gray-200 bg-white hover:border-orange-500 hover:shadow-[0_0_30px_rgba(249,115,22,0.3)]'}`}
-                >
-                  <div className="mb-4">
-                    <span className={`px-3 py-1 rounded-full text-sm ${theme === 'dark' ? 'bg-zinc-800 text-red-300' : 'bg-orange-100 text-orange-700'}`}>
-                      {project.tech}
-                    </span>
-                  </div>
-                  
-                  <h4 className="text-xl font-bold mb-3">{project.title}</h4>
-                  <p className={`mb-6 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
-                    {project.description}
-                  </p>
-                  
-                  <Link 
-                    to={`/project/${category.type}/${project.id}`}
-                    className={`inline-flex items-center gap-2 font-semibold transition-all ${theme === 'dark' ? 'text-red-400 hover:text-red-300' : 'text-orange-600 hover:text-orange-500'}`}
-                  >
-                    {translations[language].viewDetails}
-                    <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              ))}
+            <div className="marquee py-6">
+              <div
+                className="marquee-track"
+                style={{ '--marquee-duration': `${getLoopItems(category.projects).length * 8}s` }}
+              >
+                {/* The loop is rendered twice so the -50% translate wraps seamlessly */}
+                {[0, 1].map((copy) =>
+                  getLoopItems(category.projects).map((project, projIndex) => (
+                    <Link
+                      key={`${copy}-${projIndex}`}
+                      to={`/project/${category.type}/${project.id}`}
+                      aria-hidden={copy === 1 || projIndex >= category.projects.length}
+                      tabIndex={copy === 1 || projIndex >= category.projects.length ? -1 : undefined}
+                      className={`group flex-shrink-0 w-80 sm:w-[28rem] mr-10 overflow-hidden rounded-xl border-2 transition-all duration-500 hover:scale-[1.04] ${theme === 'dark' ? 'border-zinc-800 bg-zinc-900 hover:border-red-500 hover:shadow-[0_0_30px_rgba(239,68,68,0.5)]' : 'border-gray-200 bg-white hover:border-orange-500 hover:shadow-[0_0_30px_rgba(249,115,22,0.3)]'}`}
+                    >
+                      <div className={`h-56 sm:h-72 overflow-hidden ${theme === 'dark' ? 'bg-zinc-800' : 'bg-gray-100'}`}>
+                        <img
+                          src={projectData[category.type]?.find((p) => p.id === project.id)?.mainImage}
+                          alt={project.title}
+                          loading="lazy"
+                          draggable={false}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                      </div>
+
+                      <div className="p-6 sm:p-8">
+                      <div className="mb-4">
+                        <span className={`px-3 py-1 rounded-full text-sm sm:text-base ${theme === 'dark' ? 'bg-zinc-800 text-red-300' : 'bg-orange-100 text-orange-700'}`}>
+                          {project.tech}
+                        </span>
+                      </div>
+
+                      <h4 className="text-2xl sm:text-3xl font-bold mb-3">{project.title}</h4>
+                      <p className={`mb-6 text-lg ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+                        {project.description}
+                      </p>
+
+                      <span
+                        className={`inline-flex items-center gap-2 text-lg font-semibold transition-all ${theme === 'dark' ? 'text-red-400 group-hover:text-red-300' : 'text-orange-600 group-hover:text-orange-500'}`}
+                      >
+                        {translations[language].viewDetails}
+                        <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                      </span>
+                      </div>
+                    </Link>
+                  ))
+                )}
+              </div>
             </div>
           </div>
         ))}

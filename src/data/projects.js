@@ -14,13 +14,13 @@ export const projects = {
         en: "A responsive portfolio website featuring dark/light mode toggle, bilingual support (EN/HU), and interactive project showcases. Built with React, Tailwind CSS, and Vite for optimal performance.",
         hu: "Reszponzív portfólió weboldal sötét/világos mód váltóval, kétnyelvű támogatással (EN/HU) és interaktív projekt bemutatókkal. React, Tailwind CSS és Vite felhasználásával készült optimális teljesítmény érdekében."
       },
-      mainImage: "/portfolio-website/public/images/portfolio1.png",
+      mainImage: "/portfolio-website/images/portfolio1.png",
       images: [
-        "/portfolio-website/public/images/portfolio1.png",
-        "/portfolio-website/public/images/portfolio2.png",
-        "/portfolio-website/public/images/portfolio3.png",
-        "/portfolio-website/public/images/portfolio4.png",
-        "/portfolio-website/public/images/portfolio5.png",
+        "/portfolio-website/images/portfolio1.png",
+        "/portfolio-website/images/portfolio2.png",
+        "/portfolio-website/images/portfolio3.png",
+        "/portfolio-website/images/portfolio4.png",
+        "/portfolio-website/images/portfolio5.png",
       ],
       technologies: ["React", "Tailwind CSS", "Vite", "React Router", "Context API"],
       features: {
@@ -54,11 +54,11 @@ export const projects = {
         en: "A complete e-commerce solution with product catalog, shopping cart, user authentication, and secure checkout. Features include product filtering, reviews, and order tracking.",
         hu: "Teljes e-commerce megoldás termékkatalógussal, bevásárlókosárral, felhasználói hitelesítéssel és biztonságos fizetéssel. Funkciók közé tartozik a termékszűrés, értékelések és rendelés követés."
       },
-      mainImage: "/portfolio-website/public/images/dowen1.png",
+      mainImage: "/portfolio-website/images/dowen1.png",
       images: [
-        "/portfolio-website/public/images/dowen1.png",
-        "/portfolio-website/public/images/dowen2.png",
-        "/portfolio-website/public/images/dowen3.png"
+        "/portfolio-website/images/dowen1.png",
+        "/portfolio-website/images/dowen2.png",
+        "/portfolio-website/images/dowen3.png"
       ],
       technologies: ["React", "Node.js", "MongoDB"],
       features: {
@@ -94,10 +94,10 @@ export const projects = {
         en: "A high-energy gameplay montage featuring intense action sequences, synchronized with dynamic music. Created using After Effects for effects and DaVinci Resolve for color grading.",
         hu: "Magas energiájú gameplay montázs intenzív akció jelenetekkel, dinamikus zenével szinkronizálva. After Effects használatával készült effektekhez és DaVinci Resolve színezéshez."
       },
-      mainImage: "/portfolio-website/public/images/valorant.jpg",
+      mainImage: "/portfolio-website/images/valorant.jpg",
       images: [
-       "/portfolio-website/public/images/valorant.jpg",
-       "/portfolio-website/public/images/Minecraft.jpg"
+       "/portfolio-website/images/valorant.jpg",
+       "/portfolio-website/images/Minecraft.jpg"
       ],
       technologies: ["After Effects", "DaVinci Resolve", "CapCut", "Color Grading"],
       features: {
@@ -131,10 +131,10 @@ export const projects = {
         en: "A music video edit that perfectly synchronizes visual cuts with song beats and lyrics. Features creative transitions, text animations, and rhythm-based editing.",
         hu: "Zenei videó szerkesztés, amely tökéletesen szinkronizálja a vizuális vágásokat a zene ütemével és dalszövegeivel. Kreatív átmenetek, szöveganimációk és ritmus alapú szerkesztés jellemzi."
       },
-      mainImage: "/portfolio-website/public/images/TikTok.png",
+      mainImage: "/portfolio-website/images/TikTok.png",
       images: [
-        "/portfolio-website/public/images/TikTok.png",
-        "/portfolio-website/public/images/Youtube.png",
+        "/portfolio-website/images/TikTok.png",
+        "/portfolio-website/images/Youtube.png",
       ],
       technologies: ["After Effects", "DaVinci Resolve", "CapCut", "Audio Syncing"],
       features: {
@@ -168,9 +168,9 @@ export const projects = {
         en: "A custom video editing project created according to client specifications. Includes logo animations, custom transitions, and professional color grading to match brand identity.",
         hu: "Egyedi videó szerkesztési projekt ügyfél specifikációk szerint. Tartalmaz logó animációkat, egyedi átmeneteket és professzionális színezést a márka identitásának megfelelően."
       },
-      mainImage: "/portfolio-website/public/images/costume.png",
+      mainImage: "/portfolio-website/images/costume.png",
       images: [
-        "/portfolio-website/public/images/costume.png",
+        "/portfolio-website/images/costume.png",
       ],
       technologies: ["After Effects", "DaVinci Resolve", "CapCut", "Motion Graphics"],
       features: {
@@ -206,11 +206,11 @@ export const projects = {
         en: "A comprehensive logo design package featuring primary logo, secondary logo, favicon, and logo variations. Created with Adobe Express and Procreate for digital and print use.",
         hu: "Átfogó logó design csomag elsődleges logóval, másodlagos logóval, faviconnal és logó variációkkal. Adobe Express és Procreate felhasználásával készült digitális és nyomtatott felhasználáshoz."
       },
-      mainImage: "/portfolio-website/public/images/Rlogo.png",
+      mainImage: "/portfolio-website/images/Rlogo.png",
       images: [
-        "/portfolio-website/public/images/Rlogo.png",
-        "/portfolio-website/public/images/fadedlogo.png",
-        "/portfolio-website/public/images/ramolalogo.png"
+        "/portfolio-website/images/Rlogo.png",
+        "/portfolio-website/images/fadedlogo.png",
+        "/portfolio-website/images/ramolalogo.png"
       ],
       technologies: ["Canva", "Adobe Express", "Procreate", "Photoshop"],
       features: {
@@ -244,10 +244,10 @@ export const projects = {
         en: "A collection of social media graphics including banners, posts, stories, and ads designed for various platforms. Created using Canva and Adobe Express for consistent brand presentation.",
         hu: "Közösségi média grafikák gyűjteménye banner-ekkel, posztokkal, story-kkal és hirdetésekkel különböző platformokra. Canva és Adobe Express felhasználásával készült konzisztens márka megjelenítés érdekében."
       },
-      mainImage: "/portfolio-website/public/images/pricelist.png",
+      mainImage: "/portfolio-website/images/pricelist.png",
       images: [
-       "/portfolio-website/public/images/pricelist.png",
-       "/portfolio-website/public/images/RoWeb.png"
+       "/portfolio-website/images/pricelist.png",
+       "/portfolio-website/images/RoWeb.png"
       ],
       technologies: ["Canva", "Adobe Express", "Photoshop", "Social Templates"],
       features: {
@@ -281,10 +281,10 @@ export const projects = {
         en: "A collection of digital artwork created with Procreate, featuring custom brushes, textures, and digital painting techniques. Includes character designs, backgrounds, and abstract art.",
         hu: "Digitális művészeti gyűjtemény Procreate-tel készítve, egyedi ecsetekkel, texturákkal és digitális festési technikákkal. Tartalmaz karakter terveket, háttereket és absztrakt művészetet."
       },
-      mainImage:"/portfolio-website/public/images/bannerforairo.png",
+      mainImage:"/portfolio-website/images/bannerforairo.png",
       images: [
-        "/portfolio-website/public/images/bannerforairo.png",
-        "/portfolio-website/public/images/logoforairo.png"
+        "/portfolio-website/images/bannerforairo.png",
+        "/portfolio-website/images/logoforairo.png"
       ],
       technologies: ["Procreate", "Photoshop", "Digital Painting", "Custom Brushes"],
       features: {
