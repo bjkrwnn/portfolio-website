@@ -143,8 +143,6 @@ export const projects = {
       mainImage: "/portfolio-website/images/gameplay-cover.jpg",
       images: [
         "/portfolio-website/images/gameplay-cover.jpg",
-        "/portfolio-website/images/valorant.jpg",
-        "/portfolio-website/images/Minecraft.jpg",
       ],
       technologies: ["After Effects", "DaVinci Resolve", "CapCut", "Color Grading"],
       features: {
@@ -181,8 +179,6 @@ export const projects = {
       mainImage: "/portfolio-website/images/montage-cover.jpg",
       images: [
         "/portfolio-website/images/montage-cover.jpg",
-        "/portfolio-website/images/TikTok.png",
-        "/portfolio-website/images/YouTube.png",
       ],
       technologies: ["After Effects", "DaVinci Resolve", "CapCut", "Audio Syncing"],
       features: {

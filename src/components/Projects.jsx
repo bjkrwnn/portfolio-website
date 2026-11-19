@@ -60,6 +60,7 @@ const Projects = () => {
           id: 1, 
           title: translations[language].gameplayEdits,
           tech: 'After Effects, DaVinci',
+          cta: language === 'en' ? 'Click me for the videos' : 'Kattints rám a videókért',
           description: language === 'en' 
             ? 'Fast-paced gameplay montages' 
             : 'Gyors tempójú gameplay montázsok'
@@ -68,6 +69,7 @@ const Projects = () => {
           id: 2, 
           title: translations[language].montageEdits,
           tech: 'After Effects, DaVinci',
+          cta: language === 'en' ? 'Click me for the videos' : 'Kattints rám a videókért',
           description: language === 'en' 
             ? 'Music-synced video edits' 
             : 'Zenéhez szinkronizált videó szerkesztések'
