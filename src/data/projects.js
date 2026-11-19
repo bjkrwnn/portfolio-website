@@ -78,6 +78,52 @@ export const projects = {
         ]
       },
     },
+    {
+      id: 3,
+      title: {
+        en: "Moonline Tattoo",
+        hu: "Moonline Tattoo"
+      },
+      subtitle: {
+        en: "Complete frontend for a tattoo studio, with online booking",
+        hu: "Teljes frontend egy tetoválószalonnak, online időpontfoglalással"
+      },
+      description: {
+        en: "The complete frontend of a fictional tattoo studio, built as a multi-page React app: a gallery with style filters and favourites, a team page where visitors can message the artists and attach images of the tattoo they have in mind, a price calculator, and a five-step online booking that can be reviewed and cancelled later.",
+        hu: "Egy kitalált tetoválószalon teljes frontendje, többoldalas React alkalmazásként: galéria stílus szerinti szűréssel és kedvencekkel, csapat oldal, ahol a látogatók üzenetet küldhetnek a munkatársaknak, és képet csatolhatnak az elképzelt tetoválásról, árkalkulátor, valamint ötlépéses online időpontfoglalás, amely utólag megtekinthető és lemondható."
+      },
+      mainImage: "/portfolio-website/images/moonline1.jpg",
+      images: [
+        "/portfolio-website/images/moonline1.jpg",
+        "/portfolio-website/images/moonline2.jpg",
+        "/portfolio-website/images/moonline3.jpg",
+        "/portfolio-website/images/moonline4.jpg",
+        "/portfolio-website/images/moonline5.jpg",
+        "/portfolio-website/images/moonline6.jpg",
+        "/portfolio-website/images/moonline7.jpg",
+        "/portfolio-website/images/moonline8.jpg",
+        "/portfolio-website/images/moonline9.jpg",
+      ],
+      technologies: ["React", "React Router", "Context API", "Vite", "Tailwind CSS"],
+      features: {
+        en: [
+          "12 pages with routing: gallery, sample pages, team and team member pages, messages, pricing, FAQ, booking, my bookings, 404",
+          "Messages to team members with image attachments (up to 3 reference images)",
+          "Five-step booking wizard with validation and live free slots",
+          "Price calculator by size, placement and style",
+          "Favourites and gallery filters kept in the URL",
+          "My bookings page with cancellation"
+        ],
+        hu: [
+          "12 oldal útvonalkezeléssel: galéria, mintaoldalak, csapat és munkatársi oldalak, üzenetek, árak, GYIK, foglalás, foglalásaim, 404",
+          "Üzenetküldés a munkatársaknak képcsatolással (legfeljebb 3 referenciakép)",
+          "Ötlépéses időpontfoglalás ellenőrzéssel és élő szabad időpontokkal",
+          "Árkalkulátor méret, hely és stílus alapján",
+          "Kedvencek, és a címsorban megmaradó galériaszűrők",
+          "Foglalásaim oldal lemondási lehetőséggel"
+        ]
+      },
+    },
   ],
   video: [
     {
@@ -157,36 +203,45 @@ export const projects = {
     {
       id: 3,
       title: {
-        en: "Custom Client Project",
-        hu: "Egyedi Ügyfél Projekt"
+        en: "Marketing Videos",
+        hu: "Marketing videók"
       },
       subtitle: {
-        en: "Tailored video editing solution",
-        hu: "Szabott videó szerkesztési megoldás"
+        en: "Promotional videos for brands and products",
+        hu: "Promóciós videók márkáknak és termékeknek"
       },
       description: {
-        en: "A custom video editing project created according to client specifications. Includes logo animations, custom transitions, and professional color grading to match brand identity.",
-        hu: "Egyedi videó szerkesztési projekt ügyfél specifikációk szerint. Tartalmaz logó animációkat, egyedi átmeneteket és professzionális színezést a márka identitásának megfelelően."
+        en: "Short promotional videos made for brands, products and social media. Each video is built around the brand's look and message, with a strong opening, clear text on screen and a call to action at the end.",
+        hu: "Rövid promóciós videók márkáknak, termékeknek és a közösségi médiába. Minden videó a márka arculatára és üzenetére épül, figyelemfelkeltő kezdéssel, jól olvasható feliratokkal és a végén egy cselekvésre ösztönző zárással."
       },
-      mainImage: "/portfolio-website/images/costume.png",
+      mainImage: "/portfolio-website/images/marketing-cover.jpg",
       images: [
-        "/portfolio-website/images/costume.png",
+        "/portfolio-website/images/marketing-cover.jpg",
+      ],
+      // Shown with a player on the project page. Files go in public/videos/,
+      // e.g. { src: "/portfolio-website/videos/promo1.mp4", title: { en: "...", hu: "..." }, portrait: true }
+      videos: [
+        {
+          src: "/portfolio-website/videos/biteloop-ad.mp4",
+          title: { en: "BiteLoop ad", hu: "BiteLoop reklám" },
+          portrait: true,
+        },
       ],
       technologies: ["After Effects", "DaVinci Resolve", "CapCut", "Motion Graphics"],
       features: {
         en: [
-          "Custom logo animations",
-          "Brand-specific color grading",
-          "Professional transitions",
-          "Client-focused editing",
-          "Multiple format exports"
+          "Attention-grabbing first seconds",
+          "Brand colours, fonts and logo",
+          "On-screen text and subtitles",
+          "Formats for Reels, TikTok and YouTube",
+          "Call to action at the end"
         ],
         hu: [
-          "Egyedi logó animációk",
-          "Márka specifikus színezés",
-          "Professzionális átmenetek",
-          "Ügyfélközpontú szerkesztés",
-          "Több formátumú exportálás"
+          "Figyelemfelkeltő első másodpercek",
+          "A márka színei, betűtípusai és logója",
+          "Feliratok és szöveges kiemelések",
+          "Formátumok Reelshez, TikTokhoz és YouTube-hoz",
+          "Cselekvésre ösztönző zárás"
         ]
       },
     }

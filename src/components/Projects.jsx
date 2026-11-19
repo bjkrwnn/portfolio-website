@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { projects as projectData } from '../data/projects';
-import { FaArrowRight, FaVideo, FaPalette, FaCode } from 'react-icons/fa';
+import BiteLoopShowcase from './BiteLoopShowcase';
+import SectionHeader from './SectionHeader';
+import { FaArrowRight, FaVideo, FaPalette, FaCode, FaPlay } from 'react-icons/fa';
 
 // Repeat the projects until one loop is wider than a large screen
 const MIN_LOOP_ITEMS = 8;
@@ -35,9 +37,17 @@ const Projects = () => {
           id: 2, 
           title: translations[language].ecommerceProjects,
           tech: 'React, Node.js, MongoDB',
-          description: language === 'en' 
-            ? 'Full-featured online stores' 
+          description: language === 'en'
+            ? 'Full-featured online stores'
             : 'Teljes értékű online áruházak'
+        },
+        {
+          id: 3,
+          title: 'Moonline Tattoo',
+          tech: 'React, React Router, Tailwind',
+          description: language === 'en'
+            ? 'Tattoo studio frontend with online booking'
+            : 'Tetoválószalon frontend online foglalással'
         },
       ]
     },
@@ -66,9 +76,11 @@ const Projects = () => {
           id: 3, 
           title: translations[language].customVideos,
           tech: 'DaVinci, After Effects, Capcut',
+          // Shows a "click me" strip under the card image
+          cta: language === 'en' ? 'Click me for the videos' : 'Kattints rám a videókért',
           description: language === 'en' 
-            ? 'Custom video editing projects' 
-            : 'Egyedi videó szerkesztési projektek'
+            ? 'Promotional videos for brands and products'
+            : 'Promóciós videók márkáknak és termékeknek'
         },
       ]
     },
@@ -108,10 +120,12 @@ const Projects = () => {
   return (
     <section id="projects" className="py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">{translations[language].projects}</h2>
-          <div className={`h-1 w-24 mx-auto ${theme === 'dark' ? 'bg-red-500' : 'bg-red-600'}`}></div>
-        </div>
+        <SectionHeader
+          title={translations[language].projects}
+          subtitle={language === 'en' ? 'My own app, websites, videos and design work – click a card to see more.' : 'Saját alkalmazás, weboldalak, videók és design munkák – kattints egy kártyára a részletekért.'}
+        />
+
+        <BiteLoopShowcase />
 
         {projectCategories.map((category, catIndex) => (
           <div key={catIndex} className="mb-16">
@@ -146,10 +160,16 @@ const Projects = () => {
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                       </div>
+                      {project.cta && (
+                        <div className="flex items-center justify-center gap-2 py-3 text-sm sm:text-base font-semibold text-white bg-gradient-to-r from-red-600 to-orange-500">
+                          <FaPlay className="text-xs transition-transform group-hover:scale-125" />
+                          {project.cta}
+                        </div>
+                      )}
 
                       <div className="p-6 sm:p-8">
                       <div className="mb-4">
-                        <span className={`px-3 py-1 rounded-full text-sm sm:text-base ${theme === 'dark' ? 'bg-zinc-800 text-red-300' : 'bg-orange-100 text-orange-700'}`}>
+                        <span className={`px-3 py-1 rounded-md text-sm sm:text-base ${theme === 'dark' ? 'bg-zinc-800 text-red-300' : 'bg-orange-100 text-orange-700'}`}>
                           {project.tech}
                         </span>
                       </div>

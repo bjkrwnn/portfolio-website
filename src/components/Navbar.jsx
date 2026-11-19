@@ -33,15 +33,15 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-500 ${theme === 'dark' ? 'bg-zinc-900/90 backdrop-blur-md border-b border-zinc-800' : 'bg-white/90 backdrop-blur-md border-b border-gray-200'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-500 ${theme === 'dark' ? 'bg-[#0e0b10]/85 backdrop-blur-md border-b border-white/5' : 'bg-white/90 backdrop-blur-md border-b border-gray-200'}`}>
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <Link 
             to="/" 
             className={`text-2xl font-bold tracking-tight ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}
           >
-            <span className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent animate-pulse">
-              Portfolio
+            <span className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+              Rowenna B.
             </span>
           </Link>
 

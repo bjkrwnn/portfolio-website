@@ -81,6 +81,10 @@ const ProjectDetail = () => {
     }
   };
 
+  // Rows of the Project Info card, styled for each theme
+  const infoRowClass = theme === 'dark' ? 'bg-zinc-800/60 border-zinc-700/60' : 'bg-orange-50/70 border-orange-100';
+  const infoLabelClass = `font-medium ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`;
+
   const getCategoryBgColor = () => {
     switch(type) {
       case 'frontend': return theme === 'dark' ? 'bg-red-500/10' : 'bg-orange-500/10';
@@ -116,17 +120,17 @@ const ProjectDetail = () => {
           {/* Project Header with Category */}
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-6">
-              <div className={`text-4xl ${getCategoryColor()} animate-pulse`}>
+              <div className={`text-4xl ${getCategoryColor()}`}>
                 {getCategoryIcon()}
               </div>
-              <span className={`px-5 py-2 rounded-full text-sm font-bold ${getCategoryBgColor()} ${getCategoryColor()} border ${theme === 'dark' ? 'border-zinc-700' : 'border-gray-300'}`}>
+              <span className={`px-5 py-2 rounded-md text-sm font-bold ${getCategoryBgColor()} ${getCategoryColor()} border ${theme === 'dark' ? 'border-zinc-700' : 'border-gray-300'}`}>
                 {type === 'frontend' ? translations[language].frontend :
                  type === 'video' ? translations[language].videoEditing : 
                  translations[language].design}
               </span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 font-orbitron tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
               {project.title[language]}
             </h1>
             <p className={`text-2xl ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'} font-medium`}>
@@ -153,7 +157,7 @@ const ProjectDetail = () => {
 
               {/* Full View Hint */}
               <div className="pointer-events-none absolute top-6 left-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold backdrop-blur-sm ${theme === 'dark' ? 'bg-black/60 text-red-400 border border-red-500/30' : 'bg-white/80 text-orange-600 border border-orange-500/30'}`}>
+                <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-bold backdrop-blur-sm ${theme === 'dark' ? 'bg-black/60 text-red-400 border border-red-500/30' : 'bg-white/80 text-orange-600 border border-orange-500/30'}`}>
                   <FaExpand /> {language === 'en' ? 'Click to view' : 'Kattints a megtekintéshez'}
                 </span>
               </div>
@@ -161,7 +165,7 @@ const ProjectDetail = () => {
               
               {/* Image Counter */}
               <div className="absolute top-6 right-6">
-                <span className={`px-4 py-2 rounded-full text-sm font-bold backdrop-blur-sm ${theme === 'dark' ? 'bg-black/60 text-red-400 border border-red-500/30' : 'bg-white/80 text-orange-600 border border-orange-500/30'}`}>
+                <span className={`px-4 py-2 rounded-md text-sm font-bold backdrop-blur-sm ${theme === 'dark' ? 'bg-black/60 text-red-400 border border-red-500/30' : 'bg-white/80 text-orange-600 border border-orange-500/30'}`}>
                   <FaImages className="inline -mt-0.5 mr-1" /> {currentImageIndex + 1} / {images.length}
                 </span>
               </div>
@@ -191,6 +195,36 @@ const ProjectDetail = () => {
               </div>
             )}
           </div>
+
+          {/* Videos (only for projects that have any) */}
+          {project.videos?.length > 0 && (
+            <div className={`p-8 rounded-2xl mb-12 ${theme === 'dark' ? 'bg-zinc-900 border border-zinc-800' : 'bg-white border border-gray-200'} shadow-lg`}>
+              <h2 className={`text-3xl font-bold mb-6 flex items-center gap-3 ${theme === 'dark' ? 'text-red-400' : 'text-orange-600'}`}>
+                <FaVideo className="text-3xl" />
+                {language === 'en' ? 'Videos' : 'Videók'}
+              </h2>
+              <div className="flex flex-wrap justify-center gap-8">
+                {project.videos.map((video) => (
+                  // Portrait (phone) videos stay narrow instead of getting black bars
+                  <figure key={video.src} className={video.portrait ? 'w-full max-w-xs' : 'w-full md:w-[calc(50%-1rem)]'}>
+                    <video
+                      src={video.src}
+                      poster={video.poster}
+                      controls
+                      preload="metadata"
+                      playsInline
+                      className={`w-full rounded-xl bg-black object-contain ${video.portrait ? 'aspect-[9/16]' : 'aspect-video'}`}
+                    />
+                    {video.title && (
+                      <figcaption className={`mt-3 font-medium text-center ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                        {video.title[language]}
+                      </figcaption>
+                    )}
+                  </figure>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             {/* Main Content - 2/3 width */}
@@ -227,7 +261,7 @@ const ProjectDetail = () => {
               {/* Challenges & Solutions Section */}
               {(project.challenges || project.solutions) && (
                 <div className={`p-8 rounded-2xl ${theme === 'dark' ? 'bg-zinc-900 border border-zinc-800' : 'bg-white border border-gray-200'} shadow-lg`}>
-                  <h2 className={`text-3xl font-bold mb-8 text-center font-orbitron ${theme === 'dark' ? 'text-red-400' : 'text-orange-600'}`}>
+                  <h2 className={`text-3xl font-bold mb-8 text-center ${theme === 'dark' ? 'text-red-400' : 'text-orange-600'}`}>
                     {translations[language].challengesAndSolutions}
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -295,18 +329,24 @@ const ProjectDetail = () => {
                   {language === 'en' ? 'Project Info' : 'Projekt Infó'}
                 </h2>
                 <div className={`space-y-6 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
-                  <div className="flex justify-between items-center p-4 rounded-lg bg-zinc-800/50 dark:bg-gray-100">
-                    <span className="font-bold text-lg">{language === 'en' ? 'Category:' : 'Kategória:'}</span>
+                  <div className={`flex justify-between items-center gap-4 px-5 py-4 rounded-lg border ${infoRowClass}`}>
+                    <span className={infoLabelClass}>{language === 'en' ? 'Category' : 'Kategória'}</span>
                     <span className={`font-bold text-xl ${getCategoryColor()}`}>
                       {type === 'frontend' ? 'Frontend' : type === 'video' ? (language === 'en' ? 'Video' : 'Videó') : 'Design'}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center p-4 rounded-lg bg-zinc-800/50 dark:bg-gray-100">
-                    <span className="font-bold text-lg">{language === 'en' ? 'Images:' : 'Képek:'}</span>
-                    <span className="font-bold text-xl">{images.length}</span>
+                  <div className={`flex justify-between items-center gap-4 px-5 py-4 rounded-lg border ${infoRowClass}`}>
+                    <span className={infoLabelClass}>{language === 'en' ? 'Images' : 'Képek'}</span>
+                    <span className={`font-bold text-xl ${theme === 'dark' ? 'text-gray-100' : 'text-gray-900'}`}>{images.length}</span>
                   </div>
-                  <div className="flex justify-between items-center p-4 rounded-lg bg-zinc-800/50 dark:bg-gray-100">
-                    <span className="font-bold text-lg">{language === 'en' ? 'Status:' : 'Állapot:'}</span>
+                  {project.videos?.length > 0 && (
+                    <div className={`flex justify-between items-center gap-4 px-5 py-4 rounded-lg border ${infoRowClass}`}>
+                      <span className={infoLabelClass}>{language === 'en' ? 'Videos' : 'Videók'}</span>
+                      <span className={`font-bold text-xl ${theme === 'dark' ? 'text-gray-100' : 'text-gray-900'}`}>{project.videos.length}</span>
+                    </div>
+                  )}
+                  <div className={`flex justify-between items-center gap-4 px-5 py-4 rounded-lg border ${infoRowClass}`}>
+                    <span className={infoLabelClass}>{language === 'en' ? 'Status' : 'Állapot'}</span>
                     <span className={`px-4 py-2 rounded-lg text-sm font-bold ${theme === 'dark' ? 'bg-green-900/40 text-green-400' : 'bg-green-100 text-green-700'}`}>
                       <FaCheckCircle className="inline -mt-0.5 mr-1" /> {language === 'en' ? 'Completed' : 'Kész'}
                     </span>
@@ -317,7 +357,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* Bottom Navigation */}
-          <div className="mt-16 pt-10 border-t border-zinc-800 dark:border-gray-300">
+          <div className={`mt-16 pt-10 border-t ${theme === 'dark' ? 'border-zinc-800' : 'border-gray-200'}`}>
             <div className="flex flex-col sm:flex-row justify-between items-center gap-8">
               <Link 
                 to="/" state={{ scrollTo: 'projects' }} 
@@ -331,7 +371,7 @@ const ProjectDetail = () => {
                 <p className={`text-lg mb-2 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
                   {language === 'en' ? 'Like this project?' : 'Tetszik ez a projekt?'}
                 </p>
-                <p className={`font-bold text-2xl font-orbitron ${theme === 'dark' ? 'text-red-400 animate-pulse' : 'text-orange-600 animate-pulse'}`}>
+                <p className={`font-bold text-2xl ${theme === 'dark' ? 'text-red-400' : 'text-orange-600'}`}>
                   {language === 'en' ? 'Let\'s work together!' : 'Dolgozzunk együtt!'}
                 </p>
               </div>
@@ -392,7 +432,7 @@ const ProjectDetail = () => {
             </>
           )}
 
-          <span className="absolute bottom-5 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-white/10 text-white text-sm font-bold">
+          <span className="absolute bottom-5 left-1/2 -translate-x-1/2 px-4 py-2 rounded-md bg-white/10 text-white text-sm font-bold">
             {currentImageIndex + 1} / {images.length}
           </span>
         </div>

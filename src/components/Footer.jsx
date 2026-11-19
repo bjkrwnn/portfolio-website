@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { FaGithub, FaDiscord, FaEnvelope } from 'react-icons/fa';
+import { DISCORD_URL } from '../data/links';
 
 const Footer = () => {
   const { theme } = useContext(ThemeContext);
@@ -9,8 +10,7 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: <FaGithub />, url: 'https://github.com/bjkrwnn', label: 'GitHub' },
-    // Discord has no public profile link, so this jumps to the contact card with the username
-    { icon: <FaDiscord />, url: '#contact', label: 'Discord' },
+    { icon: <FaDiscord />, url: DISCORD_URL, label: 'Discord' },
     { icon: <FaEnvelope />, url: 'mailto:rowivok@gmail.com', label: 'Email' },
   ];
 

@@ -45,7 +45,7 @@ export const LanguageProvider = ({ children }) => {
       ecommerceProjects: 'E-commerce Websites',
       gameplayEdits: 'Gameplay Edits',
       montageEdits: 'Montage Edits',
-      customVideos: 'Custom Videos',
+      customVideos: 'Marketing Videos',
       logoDesign: 'Logo Design',
       graphicDesign: 'Graphic Design'
     },
@@ -88,7 +88,7 @@ export const LanguageProvider = ({ children }) => {
       ecommerceProjects: 'E-commerce Weboldalak',
       gameplayEdits: 'Gameplay Szerkesztések',
       montageEdits: 'Montázs Szerkesztések',
-      customVideos: 'Egyedi Videók',
+      customVideos: 'Marketing Videók',
       logoDesign: 'Logó Design',
       graphicDesign: 'Grafikai Design'
     }

@@ -20,7 +20,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-family: 'Rajdhani', 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
@@ -372,8 +372,8 @@ body {
 
 .marquee {
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
-  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), #000 3%, #000 97%, rgba(0, 0, 0, 0.4));
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), #000 3%, #000 97%, rgba(0, 0, 0, 0.4));
 }
 
 .marquee-track {

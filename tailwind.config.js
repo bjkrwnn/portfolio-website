@@ -50,6 +50,13 @@ export default {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
+      // Tighter corners across the whole site (Tailwind defaults are 8/12/16/24px)
+      borderRadius: {
+        lg: '0.375rem',
+        xl: '0.5rem',
+        '2xl': '0.5rem',
+        '3xl': '0.625rem',
       }
     },
   },

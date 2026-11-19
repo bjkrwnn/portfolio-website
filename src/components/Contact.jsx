@@ -1,7 +1,9 @@
 ﻿import React, { useContext } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { LanguageContext } from '../contexts/LanguageContext';
-import { FaDiscord, FaEnvelope, FaGithub, FaYoutube } from 'react-icons/fa';
+import { FaDiscord, FaEnvelope, FaGithub, FaClock, FaGlobeEurope, FaComments } from 'react-icons/fa';
+import { DISCORD_USER_ID, DISCORD_USERNAME, DISCORD_URL } from '../data/links';
+import SectionHeader from './SectionHeader';
 
 const Contact = () => {
   const { theme } = useContext(ThemeContext);
@@ -11,9 +13,11 @@ const Contact = () => {
     {
       icon: <FaDiscord className="w-6 h-6" />,
       title: translations[language].discord,
-      value: 'Lyumiko',
+      value: DISCORD_USERNAME,
       color: 'indigo',
-      action: 'copy'
+      // Opens the profile (friend request) once the User ID is set, otherwise copies the username
+      action: DISCORD_USER_ID ? 'link' : 'copy',
+      url: DISCORD_URL
     },
     {
       icon: <FaEnvelope className="w-6 h-6" />,
@@ -42,12 +46,10 @@ const Contact = () => {
     <section id="contact" className="py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">{translations[language].contactTitle}</h2>
-            <p className={`text-lg md:text-xl ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'} max-w-2xl mx-auto`}>
-              {translations[language].contactText}
-            </p>
-          </div>
+          <SectionHeader
+            title={translations[language].contactTitle}
+            subtitle={translations[language].contactText}
+          />
 
           {/* Contact Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -97,7 +99,7 @@ const Contact = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
                 <div className={`text-3xl mb-3 ${theme === 'dark' ? 'text-green-400' : 'text-green-600'}`}>
-                  ⚡
+                  <FaClock className="mx-auto" />
                 </div>
                 <h3 className="text-lg font-bold mb-1">
                   {language === 'en' ? 'Fast Response' : 'Gyors Válasz'}
@@ -109,7 +111,7 @@ const Contact = () => {
               
               <div className="text-center">
                 <div className={`text-3xl mb-3 ${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'}`}>
-                  🌍
+                  <FaGlobeEurope className="mx-auto" />
                 </div>
                 <h3 className="text-lg font-bold mb-1">
                   {language === 'en' ? 'Available Worldwide' : 'Világszerte Elérhető'}
@@ -121,7 +123,7 @@ const Contact = () => {
               
               <div className="text-center">
                 <div className={`text-3xl mb-3 ${theme === 'dark' ? 'text-purple-400' : 'text-purple-600'}`}>
-                  💬
+                  <FaComments className="mx-auto" />
                 </div>
                 <h3 className="text-lg font-bold mb-1">
                   {language === 'en' ? 'Free Consultation' : 'Ingyenes Konzultáció'}
@@ -152,7 +154,7 @@ const Contact = () => {
                 {language === 'en' ? 'Send Email' : 'Email Küldése'}
               </a>
               <a 
-                href="https://discord.com"
+                href={DISCORD_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`px-6 py-3 rounded-lg font-bold border-2 transition-all ${theme === 'dark' ? 'border-indigo-500 text-indigo-400 hover:bg-indigo-500/10' : 'border-indigo-500 text-indigo-600 hover:bg-indigo-50'}`}
