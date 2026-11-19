@@ -5,6 +5,7 @@ import { LanguageContext } from '../contexts/LanguageContext';
 import { projects as projectData } from '../data/projects';
 import BiteLoopShowcase from './BiteLoopShowcase';
 import SectionHeader from './SectionHeader';
+import ProjectMarquee from './ProjectMarquee';
 import { FaArrowRight, FaVideo, FaPalette, FaCode, FaPlay } from 'react-icons/fa';
 
 // Repeat the projects until one loop is wider than a large screen
@@ -138,12 +139,8 @@ const Projects = () => {
               <h3 className="text-2xl font-bold">{category.title}</h3>
             </div>
 
-            <div className="marquee py-6">
-              <div
-                className="marquee-track"
-                style={{ '--marquee-duration': `${getLoopItems(category.projects).length * 8}s` }}
-              >
-                {/* The loop is rendered twice so the -50% translate wraps seamlessly */}
+            <ProjectMarquee>
+                {/* The loop is rendered twice, so half the track is one seamless loop */}
                 {[0, 1].map((copy) =>
                   getLoopItems(category.projects).map((project, projIndex) => (
                     <Link
@@ -191,8 +188,7 @@ const Projects = () => {
                     </Link>
                   ))
                 )}
-              </div>
-            </div>
+            </ProjectMarquee>
           </div>
         ))}
       </div>

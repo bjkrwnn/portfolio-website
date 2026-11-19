@@ -360,16 +360,7 @@ body {
               linear-gradient(45deg, #f97316, #ef4444) border-box;
 }
 
-/* Project Marquee (cards drift from left to right) */
-@keyframes marquee {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
+/* Project marquee: moved by ProjectMarquee.jsx (auto-scroll, drag, arrow buttons) */
 .marquee {
   overflow: hidden;
   -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), #000 3%, #000 97%, rgba(0, 0, 0, 0.4));
@@ -379,10 +370,13 @@ body {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee var(--marquee-duration, 48s) linear infinite;
+  will-change: transform;
+  /* vertical page scrolling stays native, horizontal swipes move the row */
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
 }
 
-.marquee:hover .marquee-track,
-.marquee:focus-within .marquee-track {
-  animation-play-state: paused;
+.marquee-track.dragging {
+  cursor: grabbing;
 }
