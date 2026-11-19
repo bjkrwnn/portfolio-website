@@ -140,10 +140,11 @@ export const projects = {
         en: "A high-energy gameplay montage featuring intense action sequences, synchronized with dynamic music. Created using After Effects for effects and DaVinci Resolve for color grading.",
         hu: "Magas energiájú gameplay montázs intenzív akció jelenetekkel, dinamikus zenével szinkronizálva. After Effects használatával készült effektekhez és DaVinci Resolve színezéshez."
       },
-      mainImage: "/portfolio-website/images/valorant.jpg",
+      mainImage: "/portfolio-website/images/gameplay-cover.jpg",
       images: [
-       "/portfolio-website/images/valorant.jpg",
-       "/portfolio-website/images/Minecraft.jpg"
+        "/portfolio-website/images/gameplay-cover.jpg",
+        "/portfolio-website/images/valorant.jpg",
+        "/portfolio-website/images/Minecraft.jpg",
       ],
       technologies: ["After Effects", "DaVinci Resolve", "CapCut", "Color Grading"],
       features: {
@@ -177,10 +178,11 @@ export const projects = {
         en: "A music video edit that perfectly synchronizes visual cuts with song beats and lyrics. Features creative transitions, text animations, and rhythm-based editing.",
         hu: "Zenei videó szerkesztés, amely tökéletesen szinkronizálja a vizuális vágásokat a zene ütemével és dalszövegeivel. Kreatív átmenetek, szöveganimációk és ritmus alapú szerkesztés jellemzi."
       },
-      mainImage: "/portfolio-website/images/TikTok.png",
+      mainImage: "/portfolio-website/images/montage-cover.jpg",
       images: [
+        "/portfolio-website/images/montage-cover.jpg",
         "/portfolio-website/images/TikTok.png",
-        "/portfolio-website/images/Youtube.png",
+        "/portfolio-website/images/YouTube.png",
       ],
       technologies: ["After Effects", "DaVinci Resolve", "CapCut", "Audio Syncing"],
       features: {

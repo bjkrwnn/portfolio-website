@@ -38,8 +38,9 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           <Link 
             to="/" 
-            className={`text-2xl font-bold tracking-tight ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}
+            className={`flex items-center gap-3 text-2xl font-bold tracking-tight ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}
           >
+            <img src="/portfolio-website/images/logo.png" alt="" className={`w-10 h-10 sm:w-11 sm:h-11 object-contain ${theme === 'dark' ? 'drop-shadow-[0_0_8px_rgba(248,113,113,0.6)]' : ''}`} />
             <span className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
               Rowenna B.
             </span>

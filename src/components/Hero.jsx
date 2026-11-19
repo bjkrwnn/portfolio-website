@@ -125,9 +125,9 @@ const Hero = () => {
               <div className={`rounded-3xl p-7 sm:p-8 ${isDark ? 'bg-[#161117]' : 'bg-white'}`}>
                 <div className="flex items-center gap-4 mb-7">
                   <img
-                    src="/portfolio-website/images/Rlogo.png"
+                    src="/portfolio-website/images/logo.png"
                     alt="Rowenna B. logo"
-                    className="w-16 h-16 rounded-2xl object-cover ring-2 ring-red-500/40"
+                    className={`w-16 h-16 object-contain ${isDark ? 'drop-shadow-[0_0_10px_rgba(248,113,113,0.6)]' : ''}`}
                   />
                   <div>
                     <p className="text-xl font-bold">Rowenna B.</p>
