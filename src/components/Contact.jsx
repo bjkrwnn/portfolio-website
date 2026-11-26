@@ -56,7 +56,7 @@ const Contact = () => {
             {contactMethods.map((method, index) => (
               <div 
                 key={index}
-                className={`group p-6 rounded-xl border-2 transition-all duration-300 hover:scale-105 ${theme === 'dark' ? 'border-zinc-800 bg-zinc-900 hover:border-red-500 hover:shadow-[0_0_20px_rgba(239,68,68,0.2)]' : 'border-gray-200 bg-white hover:border-orange-500 hover:shadow-[0_0_20px_rgba(249,115,22,0.1)]'}`}
+                className={`group p-6 rounded-xl border-2 transition-all duration-300 hover:scale-105 ${theme === 'dark' ? 'border-zinc-800 bg-zinc-900 hover:border-red-500 hover:shadow-[0_0_20px_rgba(201,53,74,0.2)]' : 'border-gray-200 bg-white hover:border-orange-500 hover:shadow-[0_0_20px_rgba(226,125,125,0.1)]'}`}
               >
                 <div className={`w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center ${theme === 'dark' ? 'bg-zinc-800' : 'bg-gray-100'} ${method.color === 'indigo' ? 'text-indigo-500' : method.color === 'red' ? 'text-red-500' : method.color === 'blue' ? 'text-blue-500' : 'text-gray-600'}`}>
                   {method.icon}

@@ -109,7 +109,7 @@ const About = () => {
             {skills.map((skill, index) => (
               <div 
                 key={index}
-                className={`group p-6 rounded-xl border-2 transition-all duration-500 hover:scale-105 ${theme === 'dark' ? 'border-zinc-800 bg-zinc-900 hover:border-red-500 hover:shadow-[0_0_30px_rgba(239,68,68,0.3)]' : 'border-gray-200 bg-white hover:border-orange-500 hover:shadow-[0_0_30px_rgba(249,115,22,0.2)]'}`}
+                className={`group p-6 rounded-xl border-2 transition-all duration-500 hover:scale-105 ${theme === 'dark' ? 'border-zinc-800 bg-zinc-900 hover:border-red-500 hover:shadow-[0_0_30px_rgba(201,53,74,0.3)]' : 'border-gray-200 bg-white hover:border-orange-500 hover:shadow-[0_0_30px_rgba(226,125,125,0.2)]'}`}
               >
                 <div className="flex items-start gap-4 mb-4">
                   <div className={`p-3 rounded-lg ${theme === 'dark' ? 'bg-zinc-800 text-red-400' : 'bg-red-100 text-red-600'}`}>
@@ -156,7 +156,7 @@ const About = () => {
               </p>
               <a 
                 href="#contact"
-                className={`inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold text-white transition-all hover:scale-105 ${theme === 'dark' ? 'bg-gradient-to-r from-red-600 to-red-700 hover:shadow-[0_0_30px_rgba(239,68,68,0.5)]' : 'bg-gradient-to-r from-orange-500 to-orange-600 hover:shadow-[0_0_30px_rgba(249,115,22,0.4)]'}`}
+                className={`inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold text-white transition-all hover:scale-105 ${theme === 'dark' ? 'bg-gradient-to-r from-red-600 to-red-700 hover:shadow-[0_0_30px_rgba(201,53,74,0.5)]' : 'bg-gradient-to-r from-orange-500 to-orange-600 hover:shadow-[0_0_30px_rgba(226,125,125,0.4)]'}`}
               >
                 {translations[language].contact}
                 <FaRocket className="group-hover:translate-x-1 transition-transform" />

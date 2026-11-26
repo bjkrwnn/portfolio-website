@@ -148,7 +148,7 @@ const Projects = () => {
                       to={`/project/${category.type}/${project.id}`}
                       aria-hidden={copy === 1 || projIndex >= category.projects.length}
                       tabIndex={copy === 1 || projIndex >= category.projects.length ? -1 : undefined}
-                      className={`group flex-shrink-0 w-80 sm:w-[28rem] mr-10 overflow-hidden rounded-xl border-2 transition-all duration-500 hover:scale-[1.04] ${theme === 'dark' ? 'border-zinc-800 bg-zinc-900 hover:border-red-500 hover:shadow-[0_0_30px_rgba(239,68,68,0.5)]' : 'border-gray-200 bg-white hover:border-orange-500 hover:shadow-[0_0_30px_rgba(249,115,22,0.3)]'}`}
+                      className={`group flex-shrink-0 w-80 sm:w-[28rem] mr-10 overflow-hidden rounded-xl border-2 transition-all duration-500 hover:scale-[1.04] ${theme === 'dark' ? 'border-zinc-800 bg-zinc-900 hover:border-red-500 hover:shadow-[0_0_30px_rgba(201,53,74,0.5)]' : 'border-gray-200 bg-white hover:border-orange-500 hover:shadow-[0_0_30px_rgba(226,125,125,0.3)]'}`}
                     >
                       <div className={`h-56 sm:h-72 overflow-hidden ${theme === 'dark' ? 'bg-zinc-800' : 'bg-gray-100'}`}>
                         <img

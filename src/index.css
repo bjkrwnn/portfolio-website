@@ -5,11 +5,11 @@
 @tailwind utilities;
 
 :root {
-  --primary-red: #ef4444;
-  --primary-orange: #f97316;
-  --dark-bg: #09090b;
-  --dark-card: #18181b;
-  --dark-border: #27272a;
+  --primary-red: #C9354A;
+  --primary-orange: #F4A62A;
+  --dark-bg: #1C1517;
+  --dark-card: #241a1d;
+  --dark-border: #3D1A22;
 }
 
 * {
@@ -33,16 +33,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #18181b;
+  background: #1C1517;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ef4444;
+  background: #C9354A;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #dc2626;
+  background: #E27D7D;
 }
 
 /* Custom Font Classes */
@@ -56,28 +56,28 @@ body {
 
 /* Neon Glow Effects */
 .neon-glow {
-  text-shadow: 0 0 10px rgba(239, 68, 68, 0.5),
-               0 0 20px rgba(239, 68, 68, 0.3),
-               0 0 30px rgba(239, 68, 68, 0.2);
+  text-shadow: 0 0 10px rgba(201, 53, 74, 0.5),
+               0 0 20px rgba(201, 53, 74, 0.3),
+               0 0 30px rgba(201, 53, 74, 0.2);
 }
 
 .hover-glow:hover {
-  box-shadow: 0 0 15px rgba(239, 68, 68, 0.4),
-              0 0 30px rgba(239, 68, 68, 0.2);
+  box-shadow: 0 0 15px rgba(201, 53, 74, 0.4),
+              0 0 30px rgba(201, 53, 74, 0.2);
 }
 
 .border-glow {
-  box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+  box-shadow: 0 0 10px rgba(201, 53, 74, 0.3);
 }
 
 /* Pulsing Animation */
 @keyframes pulse-glow {
   0%, 100% {
-    text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+    text-shadow: 0 0 10px rgba(201, 53, 74, 0.5);
   }
   50% {
-    text-shadow: 0 0 20px rgba(239, 68, 68, 0.8),
-                 0 0 30px rgba(239, 68, 68, 0.4);
+    text-shadow: 0 0 20px rgba(201, 53, 74, 0.8),
+                 0 0 30px rgba(201, 53, 74, 0.4);
   }
 }
 
@@ -164,14 +164,14 @@ body {
 
 @keyframes neonPulse {
   0%, 100% {
-    text-shadow: 0 0 5px rgba(239, 68, 68, 0.5),
-                 0 0 10px rgba(239, 68, 68, 0.3),
-                 0 0 15px rgba(239, 68, 68, 0.2);
+    text-shadow: 0 0 5px rgba(201, 53, 74, 0.5),
+                 0 0 10px rgba(201, 53, 74, 0.3),
+                 0 0 15px rgba(201, 53, 74, 0.2);
   }
   50% {
-    text-shadow: 0 0 10px rgba(239, 68, 68, 0.8),
-                 0 0 20px rgba(239, 68, 68, 0.5),
-                 0 0 30px rgba(239, 68, 68, 0.3);
+    text-shadow: 0 0 10px rgba(201, 53, 74, 0.8),
+                 0 0 20px rgba(201, 53, 74, 0.5),
+                 0 0 30px rgba(201, 53, 74, 0.3);
   }
 }
 
@@ -260,43 +260,43 @@ body {
 /* Enhanced glow effects for dark mode */
 .dark .neon-glow {
   text-shadow: 
-    0 0 5px rgba(239, 68, 68, 0.5),
-    0 0 10px rgba(239, 68, 68, 0.3),
-    0 0 15px rgba(239, 68, 68, 0.2),
-    0 0 20px rgba(239, 68, 68, 0.1);
+    0 0 5px rgba(201, 53, 74, 0.5),
+    0 0 10px rgba(201, 53, 74, 0.3),
+    0 0 15px rgba(201, 53, 74, 0.2),
+    0 0 20px rgba(201, 53, 74, 0.1);
 }
 
 /* Orange glow for light mode */
 :not(.dark) .neon-glow {
   text-shadow: 
-    0 0 5px rgba(249, 115, 22, 0.5),
-    0 0 10px rgba(249, 115, 22, 0.3),
-    0 0 15px rgba(249, 115, 22, 0.2);
+    0 0 5px rgba(244, 166, 42, 0.5),
+    0 0 10px rgba(244, 166, 42, 0.3),
+    0 0 15px rgba(244, 166, 42, 0.2);
 }
 
 /* Enhanced skill bar glow */
 .dark .skill-bar {
   box-shadow: 
-    0 0 10px rgba(239, 68, 68, 0.5),
-    0 0 20px rgba(239, 68, 68, 0.3),
+    0 0 10px rgba(201, 53, 74, 0.5),
+    0 0 20px rgba(201, 53, 74, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 :not(.dark) .skill-bar {
   box-shadow: 
-    0 0 10px rgba(249, 115, 22, 0.4),
-    0 0 20px rgba(249, 115, 22, 0.2),
+    0 0 10px rgba(244, 166, 42, 0.4),
+    0 0 20px rgba(244, 166, 42, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 /* Strong Neon Glow for Important Elements */
 .neon-glow-strong {
   text-shadow: 
-    0 0 5px rgba(239, 68, 68, 0.8),
-    0 0 10px rgba(239, 68, 68, 0.6),
-    0 0 15px rgba(239, 68, 68, 0.4),
-    0 0 20px rgba(239, 68, 68, 0.3),
-    0 0 25px rgba(239, 68, 68, 0.2);
+    0 0 5px rgba(201, 53, 74, 0.8),
+    0 0 10px rgba(201, 53, 74, 0.6),
+    0 0 15px rgba(201, 53, 74, 0.4),
+    0 0 20px rgba(201, 53, 74, 0.3),
+    0 0 25px rgba(201, 53, 74, 0.2);
 }
 
 /* Gallery Image Hover Effects */
@@ -347,17 +347,17 @@ body {
 .gradient-border {
   border: 2px solid transparent;
   background: linear-gradient(var(--dark-bg), var(--dark-bg)) padding-box,
-              linear-gradient(45deg, #ef4444, #f97316) border-box;
+              linear-gradient(45deg, #C9354A, #F4A62A) border-box;
 }
 
 .dark .gradient-border {
   background: linear-gradient(var(--dark-bg), var(--dark-bg)) padding-box,
-              linear-gradient(45deg, #ef4444, #f97316) border-box;
+              linear-gradient(45deg, #C9354A, #F4A62A) border-box;
 }
 
 :not(.dark) .gradient-border {
   background: linear-gradient(white, white) padding-box,
-              linear-gradient(45deg, #f97316, #ef4444) border-box;
+              linear-gradient(45deg, #F4A62A, #C9354A) border-box;
 }
 
 /* Project marquee: moved by ProjectMarquee.jsx (auto-scroll, drag, arrow buttons) */

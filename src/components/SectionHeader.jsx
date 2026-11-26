@@ -12,7 +12,7 @@ const SectionHeader = ({ title, subtitle }) => {
       {subtitle && (
         <p className={`text-lg max-w-2xl mx-auto ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>{subtitle}</p>
       )}
-      <div className="h-1 w-20 mx-auto mt-6 rounded-full bg-gradient-to-r from-red-500 to-orange-400" />
+      <div className="h-1 w-20 mx-auto mt-6 rounded-full bg-gradient-to-r from-red-500 to-amber-400" />
     </div>
   );
 };

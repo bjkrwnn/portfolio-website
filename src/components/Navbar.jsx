@@ -33,7 +33,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-500 ${theme === 'dark' ? 'bg-[#0e0b10]/85 backdrop-blur-md border-b border-white/5' : 'bg-white/90 backdrop-blur-md border-b border-gray-200'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-500 ${theme === 'dark' ? 'bg-[#1C1517]/85 backdrop-blur-md border-b border-white/5' : 'bg-white/90 backdrop-blur-md border-b border-gray-200'}`}>
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <Link 

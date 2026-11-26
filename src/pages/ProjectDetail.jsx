@@ -182,7 +182,7 @@ const ProjectDetail = () => {
                     <button
                       key={index}
                       onClick={() => switchImage(index)}
-                      className={`flex-shrink-0 w-32 h-24 rounded-xl overflow-hidden transition-all duration-300 border-2 ${currentImageIndex === index ? (theme === 'dark' ? 'border-red-500 scale-105 shadow-[0_0_20px_rgba(239,68,68,0.3)]' : 'border-orange-500 scale-105 shadow-[0_0_20px_rgba(249,115,22,0.2)]') : 'border-transparent opacity-70 hover:opacity-100 hover:scale-105'} ${theme === 'dark' ? 'hover:border-zinc-600' : 'hover:border-gray-300'}`}
+                      className={`flex-shrink-0 w-32 h-24 rounded-xl overflow-hidden transition-all duration-300 border-2 ${currentImageIndex === index ? (theme === 'dark' ? 'border-red-500 scale-105 shadow-[0_0_20px_rgba(201,53,74,0.3)]' : 'border-orange-500 scale-105 shadow-[0_0_20px_rgba(226,125,125,0.2)]') : 'border-transparent opacity-70 hover:opacity-100 hover:scale-105'} ${theme === 'dark' ? 'hover:border-zinc-600' : 'hover:border-gray-300'}`}
                     >
                       <img 
                         src={img} 
@@ -314,7 +314,7 @@ const ProjectDetail = () => {
                   {project.technologies.map((tech, index) => (
                     <span 
                       key={index}
-                      className={`px-5 py-3 rounded-xl font-bold transition-all duration-300 hover:scale-110 ${theme === 'dark' ? 'bg-zinc-800 text-red-300 hover:bg-zinc-700 hover:shadow-[0_0_20px_rgba(239,68,68,0.4)] border border-zinc-700' : 'bg-gray-100 text-orange-700 hover:bg-gray-200 hover:shadow-[0_0_20px_rgba(249,115,22,0.3)] border border-gray-300'}`}
+                      className={`px-5 py-3 rounded-xl font-bold transition-all duration-300 hover:scale-110 ${theme === 'dark' ? 'bg-zinc-800 text-red-300 hover:bg-zinc-700 hover:shadow-[0_0_20px_rgba(201,53,74,0.4)] border border-zinc-700' : 'bg-gray-100 text-orange-700 hover:bg-gray-200 hover:shadow-[0_0_20px_rgba(226,125,125,0.3)] border border-gray-300'}`}
                     >
                       {tech}
                     </span>
@@ -378,7 +378,7 @@ const ProjectDetail = () => {
               
               <Link
                 to="/" state={{ scrollTo: 'contact' }}
-                className={`px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:scale-105 ${theme === 'dark' ? 'bg-gradient-to-r from-red-600 to-red-700 hover:shadow-[0_0_30px_rgba(239,68,68,0.6)] text-white' : 'bg-gradient-to-r from-orange-500 to-orange-600 hover:shadow-[0_0_30px_rgba(249,115,22,0.5)] text-white'}`}
+                className={`px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:scale-105 ${theme === 'dark' ? 'bg-gradient-to-r from-red-600 to-red-700 hover:shadow-[0_0_30px_rgba(201,53,74,0.6)] text-white' : 'bg-gradient-to-r from-orange-500 to-orange-600 hover:shadow-[0_0_30px_rgba(226,125,125,0.5)] text-white'}`}
               >
                 {language === 'en' ? 'Contact Me' : 'Kapcsolat'}
               </Link>

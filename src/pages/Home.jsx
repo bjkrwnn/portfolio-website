@@ -25,10 +25,10 @@ const Home = () => {
   }, [location, navigate]);
 
   // Every other section sits on a slightly different band so the sections read as separate blocks
-  const band = theme === 'dark' ? 'bg-[#151018] border-y border-white/5' : 'bg-white border-y border-orange-100';
+  const band = theme === 'dark' ? 'bg-[#2a1a1f] border-y border-white/5' : 'bg-white border-y border-orange-100';
 
   return (
-    <div className={`min-h-screen transition-colors duration-500 ${theme === 'dark' ? 'bg-[#0e0b10] text-gray-200' : 'bg-[#fffaf5] text-gray-800'}`}>
+    <div className={`min-h-screen transition-colors duration-500 ${theme === 'dark' ? 'bg-[#1C1517] text-gray-200' : 'bg-[#fbf6ee] text-gray-800'}`}>
       <Navbar />
       <Hero />
       <div className={band}><About /></div>

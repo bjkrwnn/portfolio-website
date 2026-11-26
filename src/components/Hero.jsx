@@ -34,12 +34,12 @@ const Hero = () => {
   ];
 
   return (
-    <section id="home" className="relative overflow-hidden pt-28 pb-12 md:pt-36 md:pb-16">
+    <section id="home" className={`relative overflow-hidden pt-28 pb-12 md:pt-36 md:pb-16 ${isDark ? 'bg-gradient-to-b from-[#3a1820] via-[#241519] to-[#1C1517]' : 'bg-gradient-to-b from-[#f6e3d3] to-[#fbf6ee]'}`}>
       {/* Colour glows and a faint grid behind the content */}
       <div className="pointer-events-none absolute inset-0">
-        <div className={`absolute -top-32 -left-32 w-[36rem] h-[36rem] rounded-full blur-3xl ${isDark ? 'bg-red-600/20' : 'bg-red-300/30'}`} />
-        <div className={`absolute top-20 -right-40 w-[34rem] h-[34rem] rounded-full blur-3xl ${isDark ? 'bg-orange-500/15' : 'bg-orange-300/40'}`} />
-        <div className={`absolute -bottom-40 left-1/3 w-[30rem] h-[30rem] rounded-full blur-3xl ${isDark ? 'bg-fuchsia-600/10' : 'bg-pink-200/40'}`} />
+        <div className={`absolute -top-32 -left-32 w-[36rem] h-[36rem] rounded-full blur-3xl ${isDark ? 'bg-amber-400/25' : 'bg-amber-300/40'}`} />
+        <div className={`absolute top-20 -right-40 w-[34rem] h-[34rem] rounded-full blur-3xl ${isDark ? 'bg-red-500/40' : 'bg-red-300/40'}`} />
+        <div className={`absolute -bottom-40 left-1/3 w-[30rem] h-[30rem] rounded-full blur-3xl ${isDark ? 'bg-red-900/70' : 'bg-orange-200/50'}`} />
         <div
           className={`absolute inset-0 ${isDark ? 'opacity-[0.06]' : 'opacity-[0.25]'}`}
           style={{
@@ -122,7 +122,7 @@ const Hero = () => {
           {/* Right: profile card with numbers */}
           <div className="relative max-w-md w-full mx-auto">
             <div className="rounded-3xl p-[1.5px] bg-gradient-to-br from-red-500 via-orange-400 to-fuchsia-500 shadow-2xl shadow-red-900/20">
-              <div className={`rounded-3xl p-7 sm:p-8 ${isDark ? 'bg-[#161117]' : 'bg-white'}`}>
+              <div className={`rounded-3xl p-7 sm:p-8 ${isDark ? 'bg-[#241a1d]' : 'bg-white'}`}>
                 <div className="flex items-center gap-4 mb-7">
                   <img
                     src="/portfolio-website/images/logo.png"
@@ -140,7 +140,7 @@ const Hero = () => {
                 <div className="grid grid-cols-2 gap-3">
                   {stats.map((stat) => (
                     <div key={stat.label} className={`rounded-2xl p-4 ${isDark ? 'bg-zinc-900 border border-zinc-800' : 'bg-orange-50/70 border border-orange-100'}`}>
-                      <p className="text-2xl font-extrabold bg-gradient-to-r from-red-500 to-orange-400 bg-clip-text text-transparent">
+                      <p className="text-2xl font-extrabold bg-gradient-to-r from-red-500 to-amber-400 bg-clip-text text-transparent">
                         {stat.value}
                       </p>
                       <p className={`text-sm mt-1 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>{stat.label}</p>
